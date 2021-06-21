@@ -1,5 +1,25 @@
 import 'dart:async';
 
+class CountBloc2{
+  int _count2 = 0;
+  final StreamController<int> _countSubject2 = StreamController<int>();
+  Stream<int> get count => _countSubject2.stream;
+
+  add() {
+    _count2++;
+    _countSubject2.sink.add(_count2);
+  }
+
+  subtract() {
+    _count2--;
+    _countSubject2.sink.add(_count2);
+  }
+
+  dispose() {
+    _countSubject2.close();
+  }
+}
+
 class CountBloc {
   CountEventBloc countEventBloc = CountEventBloc();
   int _count = 0;
